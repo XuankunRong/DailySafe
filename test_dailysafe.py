@@ -9,15 +9,15 @@ class EvaluationProtocol(unittest.TestCase):
         self.case = {
             "case_id": "internal-id",
             "turns": [
-                {"turn_id": 1, "user_text_en": "earlier", "image_index": 0},
-                {"turn_id": 2, "user_text_en": "later", "image_index": None},
+                {"turn_id": 1, "user_text": "earlier", "image_index": 0},
+                {"turn_id": 2, "user_text": "later", "image_index": None},
             ],
             "images": [{"bytes": b"\x89PNG\r\n\x1a\nfixture"}],
         }
         self.ref = {
             "critical_turn": 2,
-            "safety_note_en": {"risk": "reference for the judge only"},
-            "image_descriptions_en": [{"turn_id": 1, "description": "visual description"}],
+            "safety_note": {"risk": "reference for the judge only"},
+            "image_descriptions": [{"turn_id": 1, "description": "visual description"}],
         }
         self.calls = []
 
@@ -34,7 +34,7 @@ class EvaluationProtocol(unittest.TestCase):
         self.assertNotIn("reference for the judge", json.dumps(self.calls))
         self.assertNotIn("internal-id", json.dumps(self.calls))
         self.assertEqual(answers[1], {"turn_id": 2, "text": "reply 2"})
-        judged = json.dumps(judge_messages(self.case, answers, self.ref, "en", "full", "rubric"))
+        judged = json.dumps(judge_messages(self.case, answers, self.ref, "full", "rubric"))
         self.assertIn("reference for the judge", judged)
         self.assertIn("data:image/png;base64,", judged)
 

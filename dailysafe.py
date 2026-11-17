@@ -74,8 +74,8 @@ def pieces(text):
     return {"type": "text", "text": text}
 
 
-def user_parts(row, turn, language, condition, descriptions=None):
-    parts = [pieces(turn[f"user_text_{language}"])]
+def user_parts(row, turn, condition, descriptions=None):
+    parts = [pieces(turn["user_text"])]
     index = turn["image_index"]
     if index is not None and condition in {"full", "consolidated"}:
         parts.append(image_part(row["images"][index]))
@@ -83,29 +83,27 @@ def user_parts(row, turn, language, condition, descriptions=None):
         description = (descriptions or {}).get(turn["turn_id"])
         if not description:
             raise ValueError(f"Missing description at turn {turn['turn_id']}")
-        tag = "Image description: " if language == "en" else "图片描述："
-        parts.append(pieces(tag + description))
+        parts.append(pieces("Image description: " + description))
     return parts
 
 
-def replay(row, target, language="en", condition="full", reference=None, system=""):
+def replay(row, target, condition="full", reference=None, system=""):
     messages = [{"role": "system", "content": system}] if system else []
     answers = []
     turns = row["turns"]
     if condition == "consolidated":
         content = []
         for turn in turns:
-            marker = "User turn" if language == "en" else "用户回合"
-            content.append(pieces(f"{marker} {turn['turn_id']}"))
-            content.extend(user_parts(row, turn, language, condition))
+            content.append(pieces(f"User turn {turn['turn_id']}"))
+            content.extend(user_parts(row, turn, condition))
         messages.append({"role": "user", "content": content})
         return [{"turn_id": turns[-1]["turn_id"], "text": target(list(messages))}]
     descriptions = {
         item["turn_id"]: item["description"]
-        for item in (reference or {}).get(f"image_descriptions_{language}", [])
+        for item in (reference or {}).get("image_descriptions", [])
     }
     for turn in turns:
-        content = user_parts(row, turn, language, condition, descriptions)
+        content = user_parts(row, turn, condition, descriptions)
         messages.append({"role": "user", "content": content})
         answer = target(list(messages))
         answers.append({"turn_id": turn["turn_id"], "text": answer})
@@ -113,17 +111,17 @@ def replay(row, target, language="en", condition="full", reference=None, system=
     return answers
 
 
-def judge_messages(row, answers, reference, language, condition, rubric):
+def judge_messages(row, answers, reference, condition, rubric):
     replies = {reply["turn_id"]: reply["text"] for reply in answers}
     content = [
         pieces(json.dumps({"evaluation_condition": condition,
                            "critical_turn": reference["critical_turn"],
-                           "safety_note": reference[f"safety_note_{language}"]}, ensure_ascii=False))
+                           "safety_note": reference["safety_note"]}, ensure_ascii=False))
     ]
     for turn in row["turns"]:
         turn_id = turn["turn_id"]
         content.append(pieces(f"Original user turn {turn_id}"))
-        content.extend(user_parts(row, turn, language, "full"))
+        content.extend(user_parts(row, turn, "full"))
         if turn_id in replies:
             content.append(pieces(json.dumps({"assistant_reply": replies[turn_id]}, ensure_ascii=False)))
     return [{"role": "system", "content": rubric}, {"role": "user", "content": content}]
@@ -246,7 +244,7 @@ def aggregate(case_ids, results):
 def signature(args, system, rubric):
     settings = {
         key: getattr(args, key) for key in (
-            "dataset", "revision", "language", "condition", "target_url", "judge_url",
+            "dataset", "revision", "condition", "target_url", "judge_url",
             "target_model", "judge_model", "temperature", "max_tokens",
         )
     }
@@ -277,12 +275,12 @@ def run(args, rows):
                 ok += 1
                 continue
             out = {"case_id": cid, "settings_sha256": key, "condition": args.condition,
-                   "language": args.language, "target_model": args.target_model, "judge_model": args.judge_model}
+                   "target_model": args.target_model, "judge_model": args.judge_model}
             try:
                 ref = refs[cid]
-                answers = replay(row, target, args.language, args.condition, ref, system)
+                answers = replay(row, target, args.condition, ref, system)
                 out["answers"] = answers
-                out.update(parse_judgment(judge(judge_messages(row, answers, ref, args.language, args.condition, rubric))))
+                out.update(parse_judgment(judge(judge_messages(row, answers, ref, args.condition, rubric))))
                 out["status"] = "ok"
                 ok += 1
             except ProviderAccessError:
@@ -308,7 +306,6 @@ def main(argv=None):
         p.add_argument("--limit", type=int)
         if command == "run":
             p.add_argument("--output", type=Path, required=True)
-            p.add_argument("--language", choices=("en", "zh"), default="en")
             p.add_argument("--condition", choices=CONDITIONS, default="full")
             for role in ("target", "judge"):
                 value = os.environ.get(f"DAILYSAFE_{role.upper()}_URL")

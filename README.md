@@ -4,9 +4,9 @@
 
 Xuankun Rong, Xinhao Deng, Wenzheng Jiang, Ziheng Peng, Siyuan Liang, Wenke Huang, Pablo Arbelaez, and Mang Ye.
 
-[Project page](https://dailysafe.xuankun-rong.chatgpt.site/) · [Case library](https://interactsafe-case-library.xuankun-rong.chatgpt.site/)
+[Project page](https://dailysafe.xuankun-rong.chatgpt.site/) · [Hugging Face dataset](https://huggingface.co/datasets/XuankunRong/DailySafe)
 
-DailySafe asks whether a multimodal assistant can use earlier text and images to keep helping with a legitimate task when the current request becomes unsafe in context. The benchmark contains 195 cases, 692 user turns, and 475 images across 10 domains. English and Chinese are paired versions of the same cases.
+DailySafe asks whether a multimodal assistant can use earlier text and images to keep helping with a legitimate task when the current request becomes unsafe in context. The English benchmark contains 195 cases, 692 user turns, and 475 images across 10 domains.
 
 This repository contains the public reference runner and scoring code. Run outputs can vary with the model snapshots, decoding settings, prompts, and judging service. The runner does not provide archived model responses or reproduce historical table values by itself.
 
@@ -31,13 +31,13 @@ Use two multimodal Chat Completions-compatible endpoints, with optional bearer t
 dailysafe run --dataset /path/to/dailysafe \
   --target-url https://target.example/v1/chat/completions --target-model target-model \
   --judge-url https://judge.example/v1/chat/completions --judge-model judge-model \
-  --language en --condition full --limit 1 --output results/smoke.jsonl
+  --condition full --limit 1 --output results/smoke.jsonl
 
 dailysafe aggregate --dataset /path/to/dailysafe \
   --limit 1 --results results/smoke.jsonl
 ```
 
-Start with one case to verify model access before removing `--limit`. Full evaluation makes one target request per user turn and one judge request per case. Repeat a run against the same output to retry failures; completed cases are kept. Use a new output path for each independent repeat or change in model, language, or condition. Supply `--case-id` to run a specific case, and use the same selection for aggregation.
+Start with one case to verify model access before removing `--limit`. Full evaluation makes one target request per user turn and one judge request per case. Repeat a run against the same output to retry failures; completed cases are kept. Use a new output path for each independent repeat or change in model or condition. Supply `--case-id` to run a specific case, and use the same selection for aggregation.
 
 ### Conditions
 
