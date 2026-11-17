@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dailysafe-eval"
+version = "1.0.0"
+description = "Run and score DailySafe multimodal safety benchmark interactions"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+dependencies = ["datasets>=4.5,<5", "Pillow>=10"]
+
+[project.scripts]
+dailysafe = "dailysafe:main"
+
+[tool.setuptools]
+py-modules = ["dailysafe"]
