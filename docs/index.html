@@ -39,6 +39,7 @@
         <a class="button solid" id="paper-button" href="#abstract"><svg aria-hidden="true"><use href="./assets/icons.svg#paper"></use></svg>Paper Overview</a>
         <a class="button" id="code-button" href="https://github.com/XuankunRong/DailySafe"><svg aria-hidden="true"><use href="./assets/icons.svg#github"></use></svg>Code</a>
         <a class="button" id="dataset-button" href="https://huggingface.co/datasets/XuankunRong/DailySafe"><svg aria-hidden="true"><use href="./assets/icons.svg#database"></use></svg>HF Dataset</a>
+        <a class="button" href="#leaderboard"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20h18M5 17v-4h4v4m1.5 0V5h4v12m1.5 0V9h4v8"></path></svg>Leaderboard</a>
       </div>
     </section>
     <section class="shell teaser" aria-label="Research question">
@@ -56,6 +57,10 @@
     <section class="section shell" id="benchmark" aria-labelledby="benchmark-title">
       <h2 id="benchmark-title">DailySafe Benchmark</h2>
       <p class="section-intro">The benchmark contains short English interactions about practical decisions in the kitchen, at work, online, and beyond.</p>
+      <figure class="paper-figure paper-figure-narrow">
+        <img src="./assets/paper-figure-1.png" alt="Why DailySafe evaluates everyday user goals and risks that emerge as new text and images arrive across turns" width="1209" height="1098" loading="lazy">
+        <figcaption><strong>Figure 1. Motivation.</strong> Earlier observations can make an ordinary next request safety-critical.</figcaption>
+      </figure>
       <section class="walkthrough" id="walkthrough" aria-labelledby="walk-title">
         <div class="walk-top">
           <div>
@@ -91,60 +96,70 @@
         </div>
         <p class="caption">Illustrative examples created for this page.</p>
       </section>
-      <h3 class="dataset-stats-heading">Dataset Statistics</h3>
+      <h3 class="paper-subheading">Benchmark Construction</h3>
+      <figure class="paper-figure">
+        <img src="./assets/paper-figure-2.png" alt="DailySafe construction pipeline: task and risk grounding, multimodal interaction synthesis, visual realization, and human screening" width="2502" height="1281" loading="lazy">
+        <figcaption><strong>Figure 2. Construction pipeline.</strong> Task topics and safety references ground the interactions, which are illustrated and screened before inclusion.</figcaption>
+      </figure>
+      <h3 class="paper-subheading">Dataset Statistics</h3>
       <dl class="stat-grid">
-        <div><dd>195</dd><dt>Cases</dt></div>
-        <div><dd>692</dd><dt>User turns</dt></div>
-        <div><dd>475</dd><dt>Images</dt></div>
-        <div><dd>10</dd><dt>Domains</dt></div>
+        <div><dt>Cases</dt><dd>195</dd></div>
+        <div><dt>User turns</dt><dd>692</dd></div>
+        <div><dt>Images</dt><dd>475</dd></div>
+        <div><dt>Domains</dt><dd>10</dd></div>
       </dl>
-      <div class="domain-board">
-        <div class="domain-description">
-          <p class="eyebrow">Dataset distribution</p>
-          <h3>10 domains, 42 task categories</h3>
-          <p>Each case starts with a legitimate goal. Select a domain to see the task categories it covers.</p>
-          <div class="domain-detail" aria-live="polite">
-            <strong id="domain-label">Food · 36 cases</strong>
-            <p id="domain-categories">Preparation · Cooking · Storage · Dining</p>
-          </div>
-        </div>
-        <div id="domain-chart" class="bars" role="group" aria-label="Cases by domain">
-          <button class="bar" type="button" data-domain="Food" aria-pressed="true" style="--portion:100%"><span>Food</span><span class="bar-track"><span></span></span><strong>36</strong></button>
-          <button class="bar" type="button" data-domain="Home" aria-pressed="false" style="--portion:69.44%"><span>Home</span><span class="bar-track"><span></span></span><strong>25</strong></button>
-          <button class="bar" type="button" data-domain="Health" aria-pressed="false" style="--portion:69.44%"><span>Health</span><span class="bar-track"><span></span></span><strong>25</strong></button>
-          <button class="bar" type="button" data-domain="Care" aria-pressed="false" style="--portion:61.11%"><span>Care</span><span class="bar-track"><span></span></span><strong>22</strong></button>
-          <button class="bar" type="button" data-domain="Work" aria-pressed="false" style="--portion:55.56%"><span>Work</span><span class="bar-track"><span></span></span><strong>20</strong></button>
-          <button class="bar" type="button" data-domain="Digital" aria-pressed="false" style="--portion:44.44%"><span>Digital</span><span class="bar-track"><span></span></span><strong>16</strong></button>
-          <button class="bar" type="button" data-domain="Mobility" aria-pressed="false" style="--portion:41.67%"><span>Mobility</span><span class="bar-track"><span></span></span><strong>15</strong></button>
-          <button class="bar" type="button" data-domain="Commerce" aria-pressed="false" style="--portion:36.11%"><span>Commerce</span><span class="bar-track"><span></span></span><strong>13</strong></button>
-          <button class="bar" type="button" data-domain="Leisure" aria-pressed="false" style="--portion:33.33%"><span>Leisure</span><span class="bar-track"><span></span></span><strong>12</strong></button>
-          <button class="bar" type="button" data-domain="Finance" aria-pressed="false" style="--portion:30.56%"><span>Finance</span><span class="bar-track"><span></span></span><strong>11</strong></button>
-        </div>
-      </div>
-      <h3 class="pipeline-title">How cases are built</h3>
-      <ol class="pipeline">
-        <li><span>01</span><h4>Ground the task</h4><p>Find everyday goals in human–assistant conversations.</p></li>
-        <li><span>02</span><h4>Ground the risk</h4><p>Use safety references to identify when harm can occur.</p></li>
-        <li><span>03</span><h4>Write the interaction</h4><p>Reveal the facts in the order a user would share them.</p></li>
-        <li><span>04</span><h4>Create the visuals</h4><p>Generate or edit images to represent each scene and state.</p></li>
-        <li><span>05</span><h4>Screen the case</h4><p>Review the scenario, the evidence, and its consistency across turns.</p></li>
-      </ol>
+      <figure class="paper-figure paper-figure-narrow distribution">
+        <img src="./assets/paper-figure-3.png" alt="DailySafe domain distribution: Home 25, Food 36, Health 25, Care 22, Mobility 15, Work 20, Commerce 13, Finance 11, Digital 16, and Leisure 12" width="1017" height="1122" loading="lazy">
+        <figcaption><strong>Figure 3. Domain and task distribution.</strong> The inner ring shows 10 domains; the outer ring shows 42 task categories.</figcaption>
+      </figure>
     </section>
 
     <section class="section evaluation" id="evaluation" aria-labelledby="eval-title">
       <div class="shell">
-        <h2 id="eval-title">Experiments &amp; Evaluation</h2>
+        <h2 id="eval-title">Experiments &amp; Results</h2>
         <p class="section-intro">The target model sees each user turn and its image in order, with its own previous replies in context. The judge sees the complete transcript and the case-specific safety note; it evaluates each response using only the evidence available at that point.</p>
         <div class="metrics">
           <article><span class="metric-label">SR</span><h3>Safety Rate</h3><p>The share of cases where the assistant manages the risk without a material failure at any turn. A later correction does not erase an earlier unsafe response.</p></article>
           <article><span class="metric-label">HR</span><h3>Helpfulness Rate</h3><p>The share of cases where the assistant advances the legitimate task with practical guidance, a safe alternative, or a necessary clarification.</p></article>
         </div>
-        <h3 class="diagnostic-title">What the analyses test</h3>
-        <div class="analyses">
-          <article><h4>Visual evidence</h4><p>Compare image inputs with text alone or text plus image descriptions.</p></article>
-          <article><h4>Interaction structure</h4><p>Compare a sequence of user turns with a consolidated request.</p></article>
-          <article><h4>History counterfactuals</h4><p>Change a key fact in the earlier conversation and check whether the recommendation changes with it.</p></article>
-        </div>
+        <section class="leaderboard" id="leaderboard" aria-labelledby="leaderboard-title">
+          <div class="leaderboard-title">
+            <h3 id="leaderboard-title">Leaderboard</h3>
+            <span id="model-count" class="model-count" role="status">16 models</span>
+          </div>
+          <div class="leaderboard-controls" id="leaderboard-controls" hidden>
+            <label>Rank by <select id="rank-by"><option value="sr">Safety Rate</option><option value="hr">Helpfulness Rate</option><option value="paper">Paper order</option></select></label>
+            <label>Model family <select id="model-family"><option value="all">All models</option><option value="proprietary">Proprietary</option><option value="large">Large open-weight</option><option value="compact">Compact open-weight</option></select></label>
+          </div>
+          <div class="table-wrap" role="region" aria-label="DailySafe model scores" tabindex="0">
+          <table class="results-table" id="main-table">
+            <caption>Source: Table 1 in the DailySafe paper. Scores are mean ± sample standard deviation across three runs. Higher is better.</caption>
+            <thead><tr><th scope="col">Model</th><th class="score-head" scope="col">SR (%) ↑</th><th class="score-head" scope="col">HR (%) ↑</th></tr></thead>
+            <tbody><tr class="model-family"><th scope="rowgroup" colspan="3">Proprietary Models</th></tr>
+              <tr><th scope="row">GPT-6 Sol</th><td>92.48 ± 2.92</td><td>94.53 ± 2.82</td></tr>
+              <tr><th scope="row">GPT-5.6 Sol</th><td>81.71 ± 3.41</td><td>85.30 ± 2.37</td></tr>
+              <tr><th scope="row">Claude Opus 5.5</th><td>92.65 ± 1.07</td><td>94.53 ± 0.30</td></tr>
+              <tr><th scope="row">Claude Sonnet 5</th><td>55.04 ± 3.09</td><td>60.51 ± 2.24</td></tr>
+              <tr><th scope="row">Gemini 3.8 Flash</th><td>82.91 ± 0.59</td><td>87.52 ± 0.78</td></tr>
+              <tr><th scope="row">Gemini 3.5 Flash</th><td>70.77 ± 3.20</td><td>76.07 ± 2.53</td></tr>
+              <tr><th scope="row">Gemini 3.1 Pro Preview</th><td>83.42 ± 3.13</td><td>84.96 ± 3.09</td></tr>
+            </tbody>
+            <tbody><tr class="model-family"><th scope="rowgroup" colspan="3">Large Open-weight Models</th></tr>
+              <tr><th scope="row">Kimi-K3</th><td>71.97 ± 1.29</td><td>77.78 ± 1.65</td></tr>
+              <tr><th scope="row">GLM-5.3-Flash</th><td>63.25 ± 1.80</td><td>69.57 ± 2.07</td></tr>
+              <tr><th scope="row">Qwen3.8-Flash-Next</th><td>55.56 ± 3.60</td><td>62.22 ± 3.78</td></tr>
+              <tr><th scope="row">DeepSeek-V4.1-Flash</th><td>41.03 ± 2.71</td><td>44.44 ± 3.41</td></tr>
+              <tr><th scope="row">MiMo-V2.6-Pro</th><td>45.81 ± 0.59</td><td>52.31 ± 2.35</td></tr>
+              <tr><th scope="row">MiMo-V2.6-Flash</th><td>30.60 ± 1.07</td><td>36.07 ± 2.53</td></tr>
+            </tbody>
+            <tbody><tr class="model-family"><th scope="rowgroup" colspan="3">Compact Open-weight Models</th></tr>
+              <tr><th scope="row">Qwen3.8-27B</th><td>42.39 ± 2.53</td><td>47.86 ± 2.07</td></tr>
+              <tr><th scope="row">Qwen3-VL-8B-Thinking</th><td>6.15 ± 0.00</td><td>8.38 ± 0.78</td></tr>
+              <tr><th scope="row">Qwen3-VL-8B-Instruct</th><td>2.91 ± 0.30</td><td>3.93 ± 1.29</td></tr>
+            </tbody>
+          </table>
+          </div>
+        </section>
       </div>
     </section>
 

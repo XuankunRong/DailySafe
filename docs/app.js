@@ -56,26 +56,80 @@
     reply.textContent = entry.response;
   });
 
-  const tasks = {
-    Food: "Preparation · Cooking · Storage · Dining",
-    Home: "Cleaning · Storage · Appliances · Maintenance",
-    Health: "Medication · Selfcare · Recovery · Monitoring",
-    Care: "Feeding · Supervision · Medication · Hygiene · Mobility",
-    Work: "Office · Laboratory · Fieldwork · Tools",
-    Digital: "Accounts · Messaging · Privacy · Devices",
-    Mobility: "Driving · Cycling · Travel",
-    Commerce: "Retail · Services · Delivery · Returns",
-    Leisure: "Outdoors · Water · Fitness · Sports · Events",
-    Finance: "Banking · Payments · Investing · Credit · Insurance"
-  };
-  const bars = [...document.querySelectorAll("[data-domain]")];
-  for (const bar of bars) bar.addEventListener("click", () => {
-    const label = bar.dataset.domain;
-    const count = bar.querySelector("strong").textContent;
-    for (const peer of bars) peer.setAttribute("aria-pressed", String(peer === bar));
-    document.querySelector("#domain-label").textContent = label + " · " + count + " cases";
-    document.querySelector("#domain-categories").textContent = tasks[label];
+  const scoreTable = document.querySelector("#main-table");
+  const rankBy = document.querySelector("#rank-by");
+  const familyFilter = document.querySelector("#model-family");
+  const familyKeys = ["proprietary", "large", "compact"];
+  const groups = [...scoreTable.tBodies];
+  const scores = groups.flatMap((body, group) => {
+    const family = body.rows[0].textContent.trim().replace(/ Models$/, "");
+    return [...body.rows].slice(1).map(row => ({
+      name: row.cells[0].textContent.trim(),
+      sr: row.cells[1].textContent.trim(),
+      hr: row.cells[2].textContent.trim(),
+      family,
+      key: familyKeys[group]
+    }));
   });
+  const heading = scoreTable.tHead.rows[0];
+  const rankHeading = document.createElement("th");
+  rankHeading.scope = "col";
+  rankHeading.className = "rank-col";
+  rankHeading.textContent = "Rank";
+  heading.prepend(rankHeading);
+  for (const body of groups) body.remove();
+  const scoreBody = scoreTable.createTBody();
+  function renderScores() {
+    const metric = rankBy.value;
+    const ranked = metric !== "paper";
+    const family = familyFilter.value;
+    const chosen = scores.filter(row => family === "all" || row.key === family);
+    if (ranked) chosen.sort((a, b) => parseFloat(b[metric]) - parseFloat(a[metric]));
+    heading.cells[2].setAttribute("aria-sort", metric === "sr" ? "descending" : "none");
+    heading.cells[3].setAttribute("aria-sort", metric === "hr" ? "descending" : "none");
+    scoreTable.dataset.metric = metric;
+    scoreBody.replaceChildren();
+    let lastMean = null, rank = 0;
+    for (const [index, result] of chosen.entries()) {
+      const row = scoreBody.insertRow();
+      const position = row.insertCell();
+      position.className = "rank-col";
+      if (ranked) {
+        const current = parseFloat(result[metric]);
+        if (current !== lastMean) rank = index + 1;
+        lastMean = current;
+        const badge = document.createElement("span");
+        badge.className = "rank-number";
+        if (rank <= 3) badge.classList.add("top-rank");
+        badge.textContent = String(rank);
+        position.append(badge);
+      } else {
+        position.textContent = "—";
+      }
+      const model = document.createElement("th");
+      model.scope = "row";
+      model.textContent = result.name;
+      const label = document.createElement("small");
+      label.textContent = result.family;
+      model.append(label);
+      row.append(model);
+      for (const key of ["sr", "hr"]) {
+        const [mean, sd] = result[key].split(" ± ");
+        const cell = row.insertCell();
+        const strength = document.createElement("strong");
+        strength.textContent = mean;
+        cell.append(strength, " ± " + sd);
+      }
+    }
+    const count = document.querySelector("#model-count");
+    count.textContent = chosen.length === scores.length
+      ? scores.length + " models"
+      : chosen.length + " of " + scores.length + " models";
+  }
+  rankBy.addEventListener("change", renderScores);
+  familyFilter.addEventListener("change", renderScores);
+  document.querySelector("#leaderboard-controls").hidden = false;
+  renderScores();
 
   document.querySelector("#copy-citation").addEventListener("click", async () => {
     const cite = document.querySelector("#bibtex");
