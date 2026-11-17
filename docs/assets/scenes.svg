@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="tile" x2="0" y2="1" gradientUnits="objectBoundingBox"><stop stop-color="#e9e9de"/><stop offset="1" stop-color="#cbd8cd"/></linearGradient>
+    <linearGradient id="counter" x2="0" y2="1" gradientUnits="objectBoundingBox"><stop stop-color="#b8c5b8"/><stop offset="1" stop-color="#e9e6d8"/></linearGradient>
+    <linearGradient id="board" x2="1" y2="1" gradientUnits="objectBoundingBox"><stop stop-color="#d99460"/><stop offset="1" stop-color="#c97d4c"/></linearGradient>
+    <linearGradient id="floor" x2="0" y2="1" gradientUnits="objectBoundingBox"><stop stop-color="#b4c4ad"/><stop offset="1" stop-color="#dfe6d6"/></linearGradient>
+    <linearGradient id="desk" x2="1" y2="1" gradientUnits="objectBoundingBox"><stop stop-color="#dadfce"/><stop offset="1" stop-color="#b7c8b5"/></linearGradient>
+    <g id="kitchen">
+      <path d="M0 0h320v73H0z" fill="url(#tile)"/>
+      <path d="M14 0v21m60-21v21m60-21v21m60-21v21m60-21v21m60-21v21M0 21h320M44 21v23m60-23v23m60-23v23m60-23v23m60-23v23M0 44h320M14 44v23m60-23v23m60-23v23m60-23v23m60-23v23m60-23v23M0 67h320" stroke="#f5f3e8" opacity=".88"/>
+      <path d="M0 72h320v81H0z" fill="url(#counter)"/><path d="M0 73h320m-320 69 320-9m-320 20 320-11" stroke="#829486" opacity=".48"/>
+      <path d="M17 69h27l-3-16H20z" fill="#bf794e"/><path d="M16 54h30v3H16z" fill="#da9562"/>
+      <path d="M31 55c0-9-2-20-11-22m11 19c0-10 5-17 11-20m-10 20c1-7 5-10 11-10" fill="none" stroke="#246552" stroke-width="2"/>
+      <path d="M20 33q-11-3-8-13 12 2 11 15zm20 1q-1-12 12-15 1 11-11 16zm3 9q1-9 10-7-1 8-10 8z" fill="#497b58"/>
+      <ellipse cx="151" cy="128" rx="91" ry="8" fill="#344f43" opacity=".2"/>
+      <path d="M78 86h139q8 0 11 7l11 25q3 8-6 9H77q-8 0-8-7l2-29q1-5 7-5z" fill="#975b36"/>
+      <path d="M77 83h139q8 0 11 7l11 25q3 8-6 9H76q-8 0-8-7l2-29q1-5 7-5z" fill="url(#board)"/>
+      <path d="M80 89h132q7 0 9 6l8 17q3 6-5 6H80q-6 0-5-6l1-18q0-5 4-5zM86 102h38m73 4h21m-91 9h25" fill="none" stroke="#ad633b" opacity=".7"/>
+      <ellipse cx="218" cy="111" rx="5.6" ry="3.5" fill="#875536" opacity=".75"/>
+      <ellipse cx="279" cy="90" rx="25" ry="5" fill="#384d42" opacity=".18"/>
+      <path d="M260 82q-4-3-4-12h42q-1 10-6 13z" fill="#55917a"/><ellipse cx="277" cy="70" rx="21" ry="5" fill="#edf0dc"/><ellipse cx="277" cy="70" rx="17" ry="3" fill="#b4c5ae"/>
+    </g>
+    <g id="entry">
+      <path d="M0 0h320v101H0z" fill="#e6e9dc"/>
+      <path d="M0 87h320v66H0z" fill="url(#floor)"/>
+      <path d="M124 89 58 153m139-64 66 64M30 116h264m-294 23h320" stroke="#a1b59e" opacity=".85"/>
+      <path d="M0 0h83v91H0z" fill="#d5dfce"/>
+      <path d="M83 0v99m0-10L0 120m0-11 83-28m237 7H83" stroke="#9bb5a1" opacity=".72"/>
+      <path d="M136 0h65v86h-65z" fill="#8eaa96"/><path d="M143 0h51v84h-51z" fill="#b2c7b8"/><path d="M148 0h41v33h-41z" fill="#c9dace"/><circle cx="185" cy="44" r="2.5" fill="#3c664e"/>
+      <path d="M205 42h83v6h-83zM209 48h5v44h-5zm69 0h5v44h-5z" fill="#9f7251"/><path d="M205 42h83v4h-83z" fill="#bc9268"/>
+      <path d="m228 41 7-8h16l7 8z" fill="#6d8f72"/><path d="M249 41l9-10h14l5 10z" fill="#b1795b"/>
+      <path d="M22 111h37l-9-22H23z" fill="#caa86f"/><path d="M28 92h15v13H28z" fill="#e8d4a6"/>
+    </g>
+    <g id="water">
+      <path d="M112 115q13-7 37-5 18-8 27-1 10 5 28 4 26 2 20 10-8 8-26 7-25 8-41 1-9-4-25-3-36-4-20-13z" fill="#a6c1c3" opacity=".88"/>
+      <path d="M126 117q18 2 33-3m-8 11q8 1 24-1m12-4h19" fill="none" stroke="#e8f1e9" stroke-width="2" stroke-linecap="round"/>
+    </g>
+    <g id="desktop">
+      <path d="M0 0h320v153H0z" fill="url(#desk)"/>
+      <path d="M0 14 320 6M0 78l320-8M0 149l320-8" stroke="#e3ead8" opacity=".7"/>
+      <ellipse cx="257" cy="100" rx="31" ry="8" fill="#728a74" opacity=".26"/>
+      <ellipse cx="258" cy="79" rx="25" ry="24" fill="#e6c294"/>
+      <circle cx="258" cy="74" r="18" fill="#a96d50"/>
+      <path d="M282 72q17-5 15 8-1 12-15 9" fill="none" stroke="#e6c294" stroke-width="5"/>
+      <path d="M249 76q7-13 17-4" fill="none" stroke="#c39674" stroke-width="2" stroke-linecap="round"/>
+      <path d="m8 53 64-20 25 82-65 21z" fill="#93aa89" opacity=".4"/>
+      <path d="m5 49 63-20 24 83-63 20z" fill="#e8e6bf"/>
+      <path d="m15 51 57-16m-53 26 47-14m-43 30 43-12m-38 27 34-10m-31 23 41-12" stroke="#b1bf9a" opacity=".85"/>
+      <rect x="114" y="8" width="92" height="143" rx="12" fill="#829885" opacity=".45"/>
+      <rect x="108" y="3" width="92" height="143" rx="12" fill="#315b49"/>
+      <rect x="113" y="8" width="82" height="133" rx="9" fill="#f0f3e7"/>
+      <path d="M138 13h32" stroke="#91a696" stroke-width="3" stroke-linecap="round"/>
+    </g>
+  </defs>
+  <symbol id="food-1" viewBox="0 0 320 153">
+    <use href="#kitchen"/>
+    <path d="M104 104q-7-8 8-14 10-4 31 0 11 4 10 11-2 9-19 13-19 4-30-10z" fill="#ba654f"/>
+    <path d="M104 100q-3-5 10-10 13-4 28 1 11 4 9 11-4 6-18 10-20 3-29-12z" fill="#e49d8d"/>
+    <path d="M112 101q10-8 24-6m-17 11q16 0 23-7" fill="none" stroke="#fac6aa" stroke-width="2" stroke-linecap="round"/>
+    <path d="M156 96q14-11 24-6 14 4 10 13-6 11-20 9-13-2-14-16z" fill="#d88878"/>
+    <path d="M164 102q11-9 20-7" fill="none" stroke="#f7b89e" stroke-width="2" stroke-linecap="round"/>
+    <path d="m176 70 63 12-4 5-62-11q-8-2-6-6 2-3 9 0z" fill="#efeee6"/><path d="m236 80 25 5-1 8-27-6z" fill="#39574a"/>
+  </symbol>
+  <symbol id="food-2" viewBox="0 0 320 153">
+    <use href="#kitchen"/>
+    <path d="m245 108 29-6 29 20-29 11-28-9z" fill="#b1beb0" opacity=".66"/>
+    <path d="m245 105 29-6 29 20-29 11-28-9z" fill="#fbf9ed"/>
+    <path d="m252 108 22 13 23-4m-40-12 19 11m-7 7-12-6" fill="none" stroke="#d1d5ca"/>
+    <path d="M103 104q29-9 64-5m-56 11q45-10 78-5" fill="none" stroke="#edb086" stroke-width="1.7" stroke-linecap="round" opacity=".8"/>
+  </symbol>
+  <symbol id="food-3" viewBox="0 0 320 153">
+    <use href="#kitchen"/>
+    <ellipse cx="271" cy="124" rx="35" ry="7" fill="#5e795e" opacity=".26"/>
+    <path d="M240 111q2 15 29 15 27 0 32-15z" fill="#759881"/>
+    <ellipse cx="271" cy="111" rx="31" ry="7" fill="#c0cfb9"/>
+    <circle cx="261" cy="106" r="11.5" fill="#c9583a"/><circle cx="280" cy="104" r="13" fill="#d36342"/><circle cx="269" cy="114" r="9.5" fill="#b74e38"/>
+    <path d="m280 95-3-4m3 4 5-4m-5 4-5 1m-14 2-5-4m5 4 4-6m4 16-4-3m4 3 3-5" stroke="#486344" stroke-width="1.6" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="home-1" viewBox="0 0 320 153">
+    <use href="#entry"/><use href="#water"/>
+    <path d="m80 126 16-12-6-9L76 120z" fill="#537864"/>
+    <path d="m88 116 32-79" fill="none" stroke="#7b623f" stroke-width="4" stroke-linecap="round"/>
+    <path d="m77 120-9 5 15 10 11-9z" fill="#e8ddac"/><path d="m75 124 13 8m-9-11 14 7" stroke="#afaa80"/>
+  </symbol>
+  <symbol id="home-2" viewBox="0 0 320 153">
+    <use href="#entry"/><use href="#water" opacity=".8"/>
+    <path d="m238 109 31-7 19 27-42 9z" fill="#9a7c54"/><path d="m240 111 27-7 17 23-36 8z" fill="#b1966d"/>
+    <path d="m249 112 12 18m-4-20 12 18m-4-21 12 18" stroke="#d2b68a" opacity=".85"/>
+  </symbol>
+  <symbol id="home-3" viewBox="0 0 320 153">
+    <use href="#entry"/><use href="#water" opacity=".74"/>
+    <ellipse cx="213" cy="130" rx="31" ry="7" fill="#677c62" opacity=".3"/>
+    <path d="M190 102h48l-5 26h-38z" fill="#aa7752"/><path d="M189 102h51v8h-51z" fill="#be9167"/>
+    <path d="M204 102v-6a11 11 0 0 1 22 0v6" fill="none" stroke="#755a43" stroke-width="2.8"/>
+    <path d="M224 96q-4-12 4-15 3 6-4 15zm-12 5q-11-8-4-15 6 3 4 15z" fill="#688854"/>
+  </symbol>
+  <symbol id="digital-1" viewBox="0 0 320 153">
+    <use href="#desktop"/>
+    <rect x="119" y="26" width="70" height="87" rx="5" fill="#d5e6d8"/>
+    <circle cx="154" cy="48" r="12" fill="#40775d"/><path d="M149 47v-2a5 5 0 1 1 10 0v2m-12 0h14v9h-14z" fill="none" stroke="#eff5e8" stroke-width="1.45"/>
+    <path d="M129 74h51m-51 7h39m-39 7h45" stroke="#85aa94" stroke-width="2" stroke-linecap="round"/>
+    <rect x="128" y="95" width="52" height="9" rx="2" fill="#91b6a0"/>
+  </symbol>
+  <symbol id="digital-2" viewBox="0 0 320 153">
+    <use href="#desktop"/>
+    <rect x="120" y="27" width="67" height="52" rx="6" fill="#d8e7d7"/>
+    <path d="M129 42h49v20h-49z" fill="#56846a"/><path d="m129 42 24 13 25-13" fill="none" stroke="#dbeadc" stroke-width="1.2"/>
+    <path d="M127 93h52m-52 10h38m-38 10h46" stroke="#91af99" stroke-width="2.5" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="digital-3" viewBox="0 0 320 153">
+    <use href="#desktop"/>
+    <circle cx="130" cy="35" r="7" fill="#c89a78"/><path d="M127 37q3-5 6 0m-3-2v-3" stroke="#faf1e5" fill="none" stroke-linecap="round"/>
+    <path d="M123 51h62v23h-53l-9 7z" fill="#e6c9b6"/>
+    <path d="M130 59h45m-45 7h29" stroke="#9d6f57" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M133 88h52v16l-7-3h-45z" fill="#d5e6d4"/><path d="M139 95h37" stroke="#91af99" stroke-width="1.85" stroke-linecap="round"/>
+    <rect x="124" y="121" width="60" height="8" rx="2" fill="#e1e9de"/>
+  </symbol>
+</svg>
