@@ -6,7 +6,7 @@
   <p><sup>1</sup> Wuhan University · <sup>2</sup> Ant Group · <sup>3</sup> Tsinghua University<br>
   <sup>4</sup> State Key Laboratory of Complex &amp; Critical Software Environment<br>
   <sup>5</sup> Renmin University of China · <sup>6</sup> Nanyang Technological University · <sup>7</sup> Universidad de Los Andes</p>
-  <p><a href="https://xuankunrong.github.io/DailySafe/"><strong>Project Page</strong></a> · <a href="https://arxiv.org/abs/2611.26298"><strong>arXiv</strong></a> · <a href="https://arxiv.org/pdf/2611.26298"><strong>PDF</strong></a> · <a href="https://huggingface.co/datasets/XuankunRong/DailySafe"><strong>Hugging Face Dataset</strong></a></p>
+  <p><a href="https://dailysafe-bench.github.io/"><strong>Project Page</strong></a> · <a href="https://arxiv.org/abs/2611.26298"><img src="docs/assets/arxiv-icon.svg" width="16" height="16" align="absmiddle" alt=""> <strong>arXiv</strong></a> · <a href="https://huggingface.co/datasets/XuankunRong/DailySafe"><img src="docs/assets/hugging-face-icon.svg" width="16" height="16" align="absmiddle" alt=""> <strong>Hugging Face</strong></a></p>
 </div>
 
 ## Benchmark
@@ -24,7 +24,7 @@ DailySafe asks whether a multimodal assistant can use earlier text and images to
 
 ## Main results
 
-**Table 1. Performance of 16 MLLMs on DailySafe.** Safety Rate (SR) and Helpfulness Rate (HR) are percentages reported as mean ± sample standard deviation across three runs. Higher is better. The [interactive leaderboard](https://xuankunrong.github.io/DailySafe/#leaderboard) supports sorting by either metric.
+**Table 1. Performance of 16 MLLMs on DailySafe.** Safety Rate (SR) and Helpfulness Rate (HR) are percentages reported as mean ± sample standard deviation across three runs. Higher is better. The [interactive leaderboard](https://dailysafe-bench.github.io/#leaderboard) supports sorting by either metric.
 
 | Model family | Model | SR (%) ↑ | HR (%) ↑ |
 | --- | --- | ---: | ---: |
